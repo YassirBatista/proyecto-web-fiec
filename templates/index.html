@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Programación Web Responsive — Demo técnica interactiva con Core Web Vitals en tiempo real." />
+  <title>Programación Web Responsive</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <!-- Prefetch fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<header class="hero">
+  <div>
+    <span class="hero-badge">Ingeniería Web · 2025</span>
+    <h1>Programación<br><span>Web Responsive</span></h1>
+    <p>Una arquitectura flexible que se adapta dinámicamente a cualquier dispositivo, resolución y contexto de ejecución.</p>
+    <div class="scroll-hint">↓ &nbsp; EXPLORAR &nbsp; ↓</div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════
+     NAVEGACIÓN
+══════════════════════════════════ -->
+<nav aria-label="Navegación principal">
+  <a href="#viewport">Viewport</a>
+  <a href="#layout">Layout</a>
+  <a href="#funciones">Funciones CSS</a>
+  <a href="#mediaqueries">Media Queries</a>
+  <a href="#multimedia">Multimedia</a>
+  <a href="#vitals">Core Web Vitals</a>
+  <a href="#desafios">Desafíos</a>
+  <a href="#futuro">Futuro</a>
+</nav>
+
+<hr class="sep" />
+
+<!-- ════════════════════════════════════════════════════
+     BLOQUE 1 — Estructura y Bases de la Adaptabilidad
+════════════════════════════════════════════════════ -->
+
+<!-- SECCIÓN 1: Detección de Viewport -->
+<section id="viewport">
+  <div class="section-label">Bloque 1 · Fundamentos</div>
+  <h2 class="section-title">Detección de Viewport</h2>
+  <p class="section-desc">
+    El <em>viewport</em> es el área visible del navegador. El CSS responsive lee estas dimensiones
+    en tiempo real para reorganizar el DOM y adaptar la interfaz al dispositivo actual.
+  </p>
+
+  <div class="grid-2 reveal">
+    <!-- Widget de viewport en vivo -->
+    <div class="viewport-box">
+      <div class="vp-row"><span class="vp-label">Ancho (vw)</span>  <span class="vp-value" id="vp-vw">—</span></div>
+      <div class="vp-row"><span class="vp-label">Alto (vh)</span>   <span class="vp-value" id="vp-vh">—</span></div>
+      <div class="vp-row"><span class="vp-label">Breakpoint</span>  <span class="vp-value" id="vp-bp">—</span></div>
+      <div class="vp-row"><span class="vp-label">Orientación</span> <span class="vp-value" id="vp-or">—</span></div>
+      <div class="breakpoint-bar">
+        <div class="bp-seg" data-bp="xs" title="xs: < 480px"></div>
+        <div class="bp-seg" data-bp="sm" title="sm: 480–767px"></div>
+        <div class="bp-seg" data-bp="md" title="md: 768–1023px"></div>
+        <div class="bp-seg" data-bp="lg" title="lg: 1024–1279px"></div>
+        <div class="bp-seg" data-bp="xl" title="xl: > 1280px"></div>
+      </div>
+    </div>
+
+    <!-- Tarjetas de dispositivo -->
+    <div class="mq-visual">
+      <div class="device-card" data-bp="xs">
+        <span class="device-icon">📱</span>
+        <div class="device-name">Móvil S</div>
+        <div class="device-bp">&lt; 480px</div>
+      </div>
+      <div class="device-card" data-bp="sm">
+        <span class="device-icon">📱</span>
+        <div class="device-name">Móvil L</div>
+        <div class="device-bp">480–767</div>
+      </div>
+      <div class="device-card" data-bp="md">
+        <span class="device-icon">📟</span>
+        <div class="device-name">Tablet</div>
+        <div class="device-bp">768–1023</div>
+      </div>
+      <div class="device-card" data-bp="lg">
+        <span class="device-icon">💻</span>
+        <div class="device-name">Laptop</div>
+        <div class="device-bp">1024–1279</div>
+      </div>
+      <div class="device-card" data-bp="xl">
+        <span class="device-icon">🖥️</span>
+        <div class="device-name">Escritorio</div>
+        <div class="device-bp">&gt; 1280px</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" />
+
+<!-- SECCIÓN 2: Arquitectura de Layout -->
+<section id="layout">
+  <div class="section-label">Bloque 1 · Estructura</div>
+  <h2 class="section-title">Arquitectura de Layout</h2>
+  <p class="section-desc">
+    <strong>CSS Grid</strong> organiza el diseño en dos dimensiones (filas y columnas), ideal para la
+    arquitectura general. <strong>Flexbox</strong> trabaja en una sola dimensión y distribuye elementos
+    dentro de contenedores. Ambos son complementarios y se usan conjuntamente.
+  </p>
+
+  <div class="grid-2 reveal">
+    <div class="layout-demo">
+      <div class="demo-label">CSS Grid — 2D (auto-fit)</div>
+      <div class="grid-demo">
+        <div class="demo-box">A</div>
+        <div class="demo-box">B</div>
+        <div class="demo-box">C</div>
+        <div class="demo-box">D</div>
+        <div class="demo-box">E</div>
+        <div class="demo-box">F</div>
+      </div>
+      <pre><span class="kw">display</span>: grid;
+<span class="kw">grid-template-columns</span>: <span class="fn">repeat</span>(<span class="str">auto-fit</span>, <span class="fn">minmax</span>(<span class="num">60px</span>, 1fr));</pre>
+    </div>
+
+    <div class="layout-demo">
+      <div class="demo-label">Flexbox — 1D (wrap)</div>
+      <div class="flex-demo">
+        <div class="demo-box" style="flex:2">flex:2</div>
+        <div class="demo-box" style="flex:1">flex:1</div>
+        <div class="demo-box" style="flex:1">flex:1</div>
+        <div class="demo-box" style="flex:3">flex:3</div>
+      </div>
+      <pre><span class="kw">display</span>: flex;
+<span class="kw">flex-wrap</span>: wrap;
+<span class="kw">gap</span>: <span class="num">0.5rem</span>;</pre>
+    </div>
+  </div>
+
+  <!-- Unidades relativas -->
+  <div class="card reveal" style="margin-top:var(--gap)">
+    <div class="card-title">Unidades Relativas</div>
+    <p style="margin-bottom:1rem;color:var(--text-dim)">
+      En lugar de píxeles fijos, el diseño responsive usa unidades que escalan con el contexto:
+      <code>%</code>, <code>vw</code>, <code>vh</code>, <code>rem</code>.
+      Esto permite que los elementos se ajusten automáticamente al tamaño del viewport.
+    </p>
+    <div class="grid-3" style="font-family:var(--mono);font-size:0.8rem">
+      <div style="padding:0.75rem;background:#00e5ff10;border:1px solid #00e5ff30;border-radius:4px">
+        <div style="color:var(--accent);font-weight:700">%</div>
+        <div style="color:var(--text-dim);margin-top:0.25rem">Relativo al padre. width: 80%</div>
+      </div>
+      <div style="padding:0.75rem;background:#b8ff5710;border:1px solid #b8ff5730;border-radius:4px">
+        <div style="color:var(--accent3);font-weight:700">vw / vh</div>
+        <div style="color:var(--text-dim);margin-top:0.25rem">Relativo al viewport. 1vw = 1% del ancho</div>
+      </div>
+      <div style="padding:0.75rem;background:#ff3f6c10;border:1px solid #ff3f6c30;border-radius:4px">
+        <div style="color:var(--accent2);font-weight:700">rem</div>
+        <div style="color:var(--text-dim);margin-top:0.25rem">Relativo al font-size raíz. 1rem = 16px</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" />
+
+<!-- SECCIÓN 3: Funciones CSS -->
+<section id="funciones">
+  <div class="section-label">Bloque 2 · Funciones Matemáticas</div>
+  <h2 class="section-title">Funciones Matemáticas en el Frontend</h2>
+  <p class="section-desc">
+    <code>clamp()</code> y <code>calc()</code> permiten crear diseños fluidos sin necesidad de múltiples
+    reglas adicionales, reduciendo la complejidad del código y mejorando la mantenibilidad.
+  </p>
+
+  <div class="grid-2 reveal">
+    <!-- clamp() demo -->
+    <div class="clamp-demo">
+      <div class="card-title">clamp(mín, preferido, máx)</div>
+      <p style="color:var(--text-dim);font-size:0.83rem;margin-bottom:1rem">
+        El texto siguiente usa <code>clamp(0.875rem, 2.5vw + 0.5rem, 2rem)</code>. 
+        Arrastra el slider para simular distintos anchos de viewport.
+      </p>
+      <p class="clamp-text" id="clamp-target">
+        Diseño fluido sin media queries
+      </p>
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);margin-top:0.5rem">
+        font-size calculado: <span id="clamp-display" style="color:var(--accent)">—</span>
+      </div>
+      <input type="range" id="clamp-slider" class="fn-slider" min="320" max="1400" value="800" />
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.65rem;color:var(--text-dim)">
+        <span>320px</span><span>Simular ancho de pantalla</span><span>1400px</span>
+      </div>
+      <pre><span class="kw">font-size</span>: <span class="fn">clamp</span>(<span class="num">0.875rem</span>, <span class="num">2.5vw</span> + <span class="num">0.5rem</span>, <span class="num">2rem</span>);</pre>
+    </div>
+
+    <!-- calc() demo -->
+    <div class="clamp-demo">
+      <div class="card-title">calc(expresión)</div>
+      <p style="color:var(--text-dim);font-size:0.83rem;margin-bottom:1rem">
+        <code>calc()</code> mezcla unidades distintas en tiempo real. La barra de progreso combina
+        porcentaje y píxeles en una sola expresión.
+      </p>
+      <div class="calc-bar-wrap" style="height:14px">
+        <div class="calc-bar" id="calc-bar" style="height:100%"></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);margin-top:0.5rem">
+        width: <span id="calc-display" style="color:var(--accent)">calc(50% + 32px)</span>
+      </div>
+      <input type="range" id="calc-slider" class="fn-slider" min="0" max="100" value="50" />
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.65rem;color:var(--text-dim)">
+        <span>0%</span><span>Ajustar base</span><span>100%</span>
+      </div>
+      <pre><span class="kw">width</span>: <span class="fn">calc</span>(<span class="num">50%</span> + <span class="num">2rem</span>);
+<span class="cm">/* Mezcla % (relativo) + rem (absoluto) */</span></pre>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" />
+
+<!-- SECCIÓN 4: Media Queries -->
+<section id="mediaqueries">
+  <div class="section-label">Bloque 2 · Lógica Condicional</div>
+  <h2 class="section-title">Lógica de Media Queries</h2>
+  <p class="section-desc">
+    Las <strong>Media Queries</strong> son estructuras condicionales dentro del CSS que aplican estilos 
+    según características del dispositivo. Los <strong>breakpoints</strong> definen puntos de cambio
+    donde la interfaz modifica su comportamiento.
+  </p>
+
+  <div class="card reveal" style="margin-bottom:var(--gap)">
+    <div class="card-title">Metodología Mobile-First</div>
+    <div class="grid-3" style="margin-top:1rem">
+      <div style="text-align:center;padding:1rem">
+        <div style="font-size:2rem;margin-bottom:0.5rem">📱</div>
+        <div style="font-weight:700;font-size:0.9rem">1. Diseño base móvil</div>
+        <div style="color:var(--text-dim);font-size:0.8rem;margin-top:0.25rem">Escenario más limitado primero</div>
+      </div>
+      <div style="text-align:center;padding:1rem;border-left:1px solid var(--border);border-right:1px solid var(--border)">
+        <div style="font-size:2rem;margin-bottom:0.5rem">⚡</div>
+        <div style="font-weight:700;font-size:0.9rem">2. min-width queries</div>
+        <div style="color:var(--text-dim);font-size:0.8rem;margin-top:0.25rem">Se escala hacia pantallas mayores</div>
+      </div>
+      <div style="text-align:center;padding:1rem">
+        <div style="font-size:2rem;margin-bottom:0.5rem">🖥️</div>
+        <div style="font-weight:700;font-size:0.9rem">3. Desktop enhanced</div>
+        <div style="color:var(--text-dim);font-size:0.8rem;margin-top:0.25rem">Capacidades adicionales en escritorio</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <pre><span class="cm">/* Mobile-First: base sin query */</span>
+<span class="kw">.container</span> { <span class="kw">grid-template-columns</span>: 1fr; }
+
+<span class="cm">/* Tablet: ≥ 768px */</span>
+<span class="kw">@media</span> (<span class="str">min-width</span>: <span class="num">768px</span>) {
+  <span class="kw">.container</span> { <span class="kw">grid-template-columns</span>: 1fr 1fr; }
+}
+
+<span class="cm">/* Desktop: ≥ 1024px */</span>
+<span class="kw">@media</span> (<span class="str">min-width</span>: <span class="num">1024px</span>) {
+  <span class="kw">.container</span> { <span class="kw">grid-template-columns</span>: <span class="fn">repeat</span>(3, 1fr); }
+}</pre>
+  </div>
+</section>
+
+<hr class="sep" />
+
+<!-- SECCIÓN 5: Gestión de Recursos Multimedia -->
+<section id="multimedia">
+  <div class="section-label">Bloque 2 · Recursos</div>
+  <h2 class="section-title">Gestión de Recursos Multimedia</h2>
+  <p class="section-desc">
+    Optimizar el uso de recursos multimedia es clave para el rendimiento. El objetivo es reducir
+    el consumo de ancho de banda y evitar la sobrecarga del <em>Main Thread</em>.
+  </p>
+
+  <div class="media-grid reveal">
+    <div class="card">
+      <span class="media-tag">srcset + sizes</span>
+      <div class="card-title">Imágenes Adaptativas</div>
+      <p style="color:var(--text-dim);font-size:0.85rem">
+        Permite al navegador seleccionar la imagen más adecuada según la resolución y densidad
+        de píxeles del dispositivo, evitando cargar imágenes innecesariamente pesadas en móviles.
+      </p>
+      <pre><span class="kw">&lt;img</span>
+  <span class="str">srcset</span>=<span class="str">"img-400.webp 400w,
+          img-800.webp 800w"</span>
+  <span class="str">sizes</span>=<span class="str">"(max-width:600px) 100vw, 50vw"</span>
+  <span class="str">alt</span>=<span class="str">"Imagen responsive"</span>
+<span class="kw">/&gt;</span></pre>
+    </div>
+
+    <div class="card">
+      <span class="media-tag">&lt;picture&gt;</span>
+      <div class="card-title">Formatos por Navegador</div>
+      <p style="color:var(--text-dim);font-size:0.85rem">
+        El elemento <code>&lt;picture&gt;</code> sirve diferentes formatos dependiendo del soporte
+        del navegador: AVIF → WebP → JPEG (fallback).
+      </p>
+      <pre><span class="kw">&lt;picture&gt;</span>
+  <span class="kw">&lt;source</span> <span class="str">type</span>=<span class="str">"image/avif"</span> <span class="str">srcset</span>=<span class="str">"img.avif"</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;source</span> <span class="str">type</span>=<span class="str">"image/webp"</span> <span class="str">srcset</span>=<span class="str">"img.webp"</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;img</span> <span class="str">src</span>=<span class="str">"img.jpg"</span> <span class="str">alt</span>=<span class="str">"Foto"</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/picture&gt;</span></pre>
+    </div>
+
+    <div class="card">
+      <span class="media-tag">loading="lazy"</span>
+      <div class="card-title">Carga Diferida</div>
+      <p style="color:var(--text-dim);font-size:0.85rem">
+        La técnica de <strong>lazy loading</strong> retrasa la carga de recursos no visibles
+        inicialmente, mejorando el tiempo de carga inicial y el LCP.
+      </p>
+      <pre><span class="kw">&lt;img</span>
+  <span class="str">src</span>=<span class="str">"foto.jpg"</span>
+  <span class="str">loading</span>=<span class="str">"lazy"</span>
+  <span class="str">decoding</span>=<span class="str">"async"</span>
+<span class="kw">/&gt;</span></pre>
+    </div>
+
+    <div class="card">
+      <span class="media-tag">Main Thread</span>
+      <div class="card-title">Eficiencia de Renderizado</div>
+      <p style="color:var(--text-dim);font-size:0.85rem">
+        Evitar la sobrecarga del <em>Main Thread</em> mejora la interactividad inicial (INP).
+        Las estrategias incluyen diferir scripts y usar <code>will-change</code> selectivamente.
+      </p>
+      <pre><span class="kw">&lt;script</span> <span class="str">defer</span> <span class="str">src</span>=<span class="str">"app.js"</span><span class="kw">&gt;&lt;/script&gt;</span>
+
+<span class="cm">/* Promueve a capa GPU */</span>
+<span class="kw">.animated</span> {
+  <span class="kw">will-change</span>: <span class="str">transform</span>;
+}</pre>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" />
+
+<!-- ════════════════════════════════════════════════════
+     BLOQUE 3 — Calidad, Testing y Futuro
+════════════════════════════════════════════════════ -->
+
+<!-- SECCIÓN 6: Core Web Vitals Dashboard -->
+<section id="vitals">
+  <div class="section-label">Bloque 3 · Rendimiento en Tiempo Real</div>
+  <h2 class="section-title">Core Web Vitals</h2>
+  <p class="section-desc">
+    Métricas específicas de Google para evaluar la experiencia de usuario. Son fundamentales en
+    el desarrollo responsive y afectan directamente al posicionamiento SEO.
+  </p>
+
+  <!-- Gauges -->
+  <div class="vitals-grid reveal">
+
+    <!-- LCP -->
+    <div class="gauge-card" id="gauge-lcp" style="--glow-color:#00e5ff">
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 120 120" aria-label="LCP gauge">
+          <!-- Track: 270° arco desde -225° hasta +45° -->
+          <circle class="gauge-track"
+            cx="60" cy="60" r="54"
+            stroke-dasharray="254.47 84.82"
+            transform="rotate(-225 60 60)" />
+          <circle class="gauge-fill" id="fill-lcp"
+            cx="60" cy="60" r="54"
+            stroke-dasharray="0 339.29"
+            stroke-dashoffset="0"
+            stroke="#b8ff57" />
+          <text x="60" y="56" text-anchor="middle" class="gauge-value" id="val-lcp">—</text>
+          <text x="60" y="70" text-anchor="middle" class="gauge-unit">LCP</text>
+        </svg>
+      </div>
+      <div class="gauge-name">LCP</div>
+      <div class="gauge-full-name">Largest Contentful Paint</div>
+      <div class="gauge-status status-wait" id="status-lcp">Esperando...</div>
+      <div style="font-family:var(--mono);font-size:0.62rem;color:var(--text-dim);margin-top:0.5rem">
+        Bueno &lt;2.5s · Mejorable &lt;4s
+      </div>
+    </div>
+
+    <!-- CLS -->
+    <div class="gauge-card" id="gauge-cls" style="--glow-color:#00e5ff">
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 120 120" aria-label="CLS gauge">
+          <circle class="gauge-track"
+            cx="60" cy="60" r="54"
+            stroke-dasharray="254.47 84.82"
+            transform="rotate(-225 60 60)" />
+          <circle class="gauge-fill" id="fill-cls"
+            cx="60" cy="60" r="54"
+            stroke-dasharray="0 339.29"
+            stroke-dashoffset="0"
+            stroke="#b8ff57" />
+          <text x="60" y="56" text-anchor="middle" class="gauge-value" id="val-cls">—</text>
+          <text x="60" y="70" text-anchor="middle" class="gauge-unit">CLS</text>
+        </svg>
+      </div>
+      <div class="gauge-name">CLS</div>
+      <div class="gauge-full-name">Cumulative Layout Shift</div>
+      <div class="gauge-status status-wait" id="status-cls">Esperando...</div>
+      <div style="font-family:var(--mono);font-size:0.62rem;color:var(--text-dim);margin-top:0.5rem">
+        Bueno &lt;0.1 · Mejorable &lt;0.25
+      </div>
+    </div>
+
+    <!-- INP -->
+    <div class="gauge-card" id="gauge-inp" style="--glow-color:#00e5ff">
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 120 120" aria-label="INP gauge">
+          <circle class="gauge-track"
+            cx="60" cy="60" r="54"
+            stroke-dasharray="254.47 84.82"
+            transform="rotate(-225 60 60)" />
+          <circle class="gauge-fill" id="fill-inp"
+            cx="60" cy="60" r="54"
+            stroke-dasharray="0 339.29"
+            stroke-dashoffset="0"
+            stroke="#b8ff57" />
+          <text x="60" y="56" text-anchor="middle" class="gauge-value" id="val-inp">—</text>
+          <text x="60" y="70" text-anchor="middle" class="gauge-unit">INP</text>
+        </svg>
+      </div>
+      <div class="gauge-name">INP</div>
+      <div class="gauge-full-name">Interaction to Next Paint</div>
+      <div class="gauge-status status-wait" id="status-inp">Esperando...</div>
+      <div style="font-family:var(--mono);font-size:0.62rem;color:var(--text-dim);margin-top:0.5rem">
+        Bueno &lt;200ms · Mejorable &lt;500ms
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ MONITOR DE LATENCIA ══ -->
+  <div class="monitor reveal">
+    <div class="monitor-header">
+      <div class="live-dot inactive" id="live-dot"></div>
+      <div class="monitor-title">Monitor de Latencia y Rendimiento</div>
+      <div class="monitor-subtitle">
+        Señales: <span id="sig-count" style="color:var(--accent)">0</span> &nbsp;|&nbsp;
+        IP: <span id="device-ip" style="color:var(--accent3)">—</span>
+      </div>
+    </div>
+
+    <div class="latency-display">
+      <!-- Número grande -->
+      <div>
+        <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text-dim);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.25rem">
+          Respuesta del dispositivo
+        </div>
+        <div>
+          <span class="latency-number" id="latency-number">—</span>
+          <span id="latency-unit" style="font-family:var(--mono);font-size:1.2rem;color:var(--text-dim)">ms</span>
+        </div>
+      </div>
+
+      <!-- Barras comparativas -->
+      <div class="latency-bars">
+        <div class="lat-row">
+          <span class="lat-label">actual</span>
+          <div class="lat-track"><div class="lat-fill" id="lat-fill-current"></div></div>
+          <span class="lat-val" id="lat-val-curr">—</span>
+        </div>
+        <div class="lat-row">
+          <span class="lat-label">media</span>
+          <div class="lat-track"><div class="lat-fill" id="lat-fill-avg" style="background:#ffbb00"></div></div>
+          <span class="lat-val" id="lat-val-avg">—</span>
+        </div>
+        <div class="lat-row">
+          <span class="lat-label">mín</span>
+          <div class="lat-track"><div class="lat-fill" id="lat-fill-min" style="background:var(--accent3)"></div></div>
+          <span class="lat-val" id="lat-val-min">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log de eventos -->
+    <div class="event-log" id="event-log">
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text-dim);padding:0.5rem 0">
+        — Esperando señal del dispositivo o simulación —
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="btn-group">
+      <button class="btn-primary" onclick="simulateMetrics()">▶ Simular señal</button>
+      <button class="btn-secondary" onclick="resetMetrics()">↺ Reiniciar</button>
+    </div>
+
+    <!-- Info Tailscale -->
+    <div style="margin-top:1rem;padding:0.75rem;background:#040810;border:1px solid var(--border);border-radius:var(--r)">
+      <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text-dim);letter-spacing:0.1em;margin-bottom:0.4rem">
+        INTEGRACIÓN CON DISPOSITIVO REAL (Tailscale)
+      </div>
+      <pre style="margin-top:0;font-size:0.7rem"><span class="cm"># Desde el móvil (reemplaza IP Tailscale)</span>
+<span class="fn">curl</span> -X POST http://&lt;IP_TAILSCALE&gt;:5000/update-metrics \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -d <span class="str">'{"lcp":1800,"cls":0.05,"inp":120,"sent_at":'</span>$(date +%s.%N)<span class="str">'}'</span></pre>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" />
+
+<!-- SECCIÓN 7: Desafíos y Deuda Técnica -->
+<section id="desafios">
+  <div class="section-label">Bloque 3 · Consideraciones</div>
+  <h2 class="section-title">Desafíos y Deuda Técnica</h2>
+  <p class="section-desc">
+    A pesar de sus beneficios, la programación responsive presenta desafíos que obligan
+    a aplicar estrategias de optimización y una planificación más rigurosa.
+  </p>
+
+  <div class="reveal">
+    <div class="challenge-row">
+      <div class="challenge-icon">⚠️</div>
+      <div class="challenge-body">
+        <strong>Overhead de código</strong>
+        <p>El envío de recursos innecesarios a ciertos dispositivos incrementa el tiempo de carga.
+           Solucionable con <em>code splitting</em> y carga condicional.</p>
+      </div>
+    </div>
+    <div class="challenge-row">
+      <div class="challenge-icon">🔀</div>
+      <div class="challenge-body">
+        <strong>Fragmentación de hardware</strong>
+        <p>La gran variedad de dispositivos disponibles aumenta la complejidad del desarrollo
+           y requiere estrategias de prueba exhaustivas.</p>
+      </div>
+    </div>
+    <div class="challenge-row">
+      <div class="challenge-icon">🧪</div>
+      <div class="challenge-body">
+        <strong>Testing multidispositivo</strong>
+        <p>Se utilizan técnicas como <em>emulación de dispositivos</em> y <em>network throttling</em>
+           para garantizar que la aplicación funcione correctamente bajo condiciones reales.</p>
+      </div>
+    </div>
+    <div class="challenge-row">
+      <div class="challenge-icon">🏗️</div>
+      <div class="challenge-body">
+        <strong>Complejidad arquitectural</strong>
+        <p>Mantener coherencia en múltiples breakpoints con sistemas de diseño escalables
+           requiere planificación desde las primeras etapas del proyecto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sep" />
+
+<!-- SECCIÓN 8: Futuro -->
+<section id="futuro">
+  <div class="section-label">Bloque 3 · Horizonte</div>
+  <h2 class="section-title">Futuro: Container Queries e IA</h2>
+  <p class="section-desc">
+    El desarrollo de interfaces responsive continúa evolucionando. Las nuevas tecnologías
+    prometen mayor modularidad y adaptación inteligente al comportamiento del usuario.
+  </p>
+
+  <div class="grid-2 reveal">
+    <div class="card">
+      <div class="card-title">Container Queries</div>
+      <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:1rem">
+        Permiten que los componentes se adapten en función del tamaño de su <strong>contenedor</strong>,
+        no del viewport. Esto facilita la creación de sistemas más modulares y reutilizables.
+      </p>
+      <pre><span class="cm">/* Definir contexto de contenedor */</span>
+<span class="kw">.card-wrapper</span> {
+  <span class="kw">container-type</span>: inline-size;
+}
+
+<span class="cm">/* Responde al contenedor, no al viewport */</span>
+<span class="kw">@container</span> (<span class="str">min-width</span>: <span class="num">400px</span>) {
+  <span class="kw">.card</span> { <span class="kw">flex-direction</span>: row; }
+}</pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Inteligencia Artificial en el Frontend</div>
+      <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:1rem">
+        La integración de IA permitirá desarrollar interfaces que se ajusten 
+        dinámicamente al comportamiento del usuario y a sus necesidades específicas,
+        consolidando el responsive como elemento fundamental del desarrollo moderno.
+      </p>
+      <div class="grid-2" style="gap:0.5rem;margin-top:0.5rem">
+        <div style="padding:0.75rem;background:#00e5ff08;border:1px solid #00e5ff20;border-radius:4px;font-size:0.8rem">
+          <div style="color:var(--accent);font-weight:700;margin-bottom:0.25rem">Layout adaptativo</div>
+          <div style="color:var(--text-dim)">Reorganización según patrones de uso</div>
+        </div>
+        <div style="padding:0.75rem;background:#b8ff5708;border:1px solid #b8ff5720;border-radius:4px;font-size:0.8rem">
+          <div style="color:var(--accent3);font-weight:700;margin-bottom:0.25rem">Personalización</div>
+          <div style="color:var(--text-dim)">Contenido contextual en tiempo real</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <p>Programación Web Responsive · <span>Demo Técnica Interactiva</span></p>
+  <p style="margin-top:0.35rem">CSS Grid · Flexbox · Media Queries · clamp() · Core Web Vitals</p>
+</footer>
+
+<script src="/static/script.js" defer></script>
+</body>
+</html>
