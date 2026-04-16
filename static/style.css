@@ -20,13 +20,14 @@
 }
 
 /* ── Reset ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; max-width: 100%; }
 html { scroll-behavior: smooth; font-size: 16px; }
 html, body {
   max-width: 100vw;
   overflow-x: hidden; /* Corta cualquier contenido que intente salirse por la derecha */
 }
 body {
+  margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--sans);
@@ -787,3 +788,4 @@ pre {
   border-top: 1px solid var(--border);
   margin: 0;
 }
+
