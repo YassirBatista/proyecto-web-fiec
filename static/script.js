@@ -73,18 +73,24 @@ if (clampSlider) {
   });
 }
 
-if (calcBar) {
-  const calcSlider = document.getElementById("calc-slider");
-  if (calcSlider) {
-    calcSlider.addEventListener("input", () => {
-      const val = parseInt(calcSlider.value);
-      // calc(50% + offset)
-      const offset = ((val - 50) / 50) * 32; // ±2rem en px
-      const pct    = Math.min(100, Math.max(0, val + (offset / (calcSlider.offsetWidth || 300)) * 100));
-      calcBar.style.width = pct + "%";
-      if (calcDisplay) calcDisplay.textContent = `calc(${val}% + ${offset.toFixed(0)}px)`;
-    });
+const calcSlider  = document.getElementById("calc-slider");
+const plainBar    = document.getElementById("plain-bar");
+const pctDisplay  = document.getElementById("pct-display");
+
+if (calcSlider) {
+  function updateCalcDemo() {
+    const val = parseInt(calcSlider.value);
+
+    // Barra sin calc: solo el porcentaje puro
+    if (plainBar)    plainBar.style.width     = val + "%";
+    if (pctDisplay)  pctDisplay.textContent   = val + "%";
+
+    // Barra con calc: mismo % pero restando 2rem fijos
+    if (calcBar)     calcBar.style.width      = `calc(${val}% - 2rem)`;
+    if (calcDisplay) calcDisplay.textContent  = `calc(${val}% - 2rem)`;
   }
+  calcSlider.addEventListener("input", updateCalcDemo);
+  updateCalcDemo(); // estado inicial
 }
 
 /* ══════════════════════════════════
