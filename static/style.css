@@ -43,8 +43,17 @@ body {
 /* ══════════════════════════════════
    HERO / CABECERA
 ══════════════════════════════════ */
+Aquí tienes el bloque completo del .hero con los ajustes necesarios para que el título no se desplace a la derecha en móviles y mantenga su impacto en PC.
+
+He añadido un control de ancho y corregido el tamaño mínimo del clamp para asegurar que el texto siempre se mantenga dentro de la pantalla.
+CSS
+
+/* ══════════════════════════════════
+   HERO / CABECERA
+══════════════════════════════════ */
 .hero {
   min-height: 100svh;
+  width: 100%; /* Asegura que el contenedor no exceda la pantalla */
   display: grid;
   place-items: center;
   padding: var(--section-p);
@@ -55,6 +64,7 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box; /* Evita que el padding sume ancho extra */
 }
 
 .hero::before {
@@ -87,10 +97,17 @@ body {
 .hero h1 {
   font-family: var(--sans);
   font-weight: 800;
-  font-size: clamp(2.2rem, 8vw, 5.5rem);
+  /* Bajamos el mínimo a 1.8rem para que quepa en móviles estrechos sin desbordar */
+  font-size: clamp(1.8rem, 8vw, 5.5rem);
   line-height: 1.05;
   letter-spacing: -0.03em;
   animation: fade-up 0.8s ease both 0.2s;
+  
+  /* Ajustes para centrado y contención */
+  max-width: 100%;
+  margin-inline: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero h1 span { color: var(--accent); }
@@ -101,6 +118,7 @@ body {
   color: var(--text-dim);
   font-size: clamp(0.9rem, 2.5vw, 1.05rem);
   animation: fade-up 0.8s ease both 0.4s;
+  width: 100%; /* Asegura que el p no empuje el contenedor */
 }
 
 .scroll-hint {
