@@ -18,7 +18,7 @@
 <header class="hero">
   <div>
     <span class="hero-badge">Programación Web · 2025</span>
-    <h1>Diseño<br><span>Web Responsive</span></h1>
+    <h1 class="heroCENTER">Diseño<br><span>Web Responsive</span></h1>
     <p>Una arquitectura flexible que se adapta dinámicamente a cualquier dispositivo, resolución y contexto de ejecución.</p>
     <div class="scroll-hint">↓ &nbsp; EXPLORAR &nbsp; ↓</div>
   </div>
@@ -293,76 +293,7 @@
 <hr class="sep" />
 
 <!-- SECCIÓN 5: Gestión de Recursos Multimedia -->
-<section id="multimedia">
-  <div class="section-label">Bloque 2 · Recursos</div>
-  <h2 class="section-title">Gestión de Recursos Multimedia</h2>
-  <p class="section-desc">
-    Optimizar el uso de recursos multimedia es clave para el rendimiento. El objetivo es reducir
-    el consumo de ancho de banda y evitar la sobrecarga del <em>Main Thread</em>.
-  </p>
 
-  <div class="media-grid reveal">
-    <div class="card">
-      <span class="media-tag">srcset + sizes</span>
-      <div class="card-title">Imágenes Adaptativas</div>
-      <p style="color:var(--text-dim);font-size:0.85rem">
-        Permite al navegador seleccionar la imagen más adecuada según la resolución y densidad
-        de píxeles del dispositivo, evitando cargar imágenes innecesariamente pesadas en móviles.
-      </p>
-      <pre><span class="kw">&lt;img</span>
-  <span class="str">srcset</span>=<span class="str">"img-400.webp 400w,
-          img-800.webp 800w"</span>
-  <span class="str">sizes</span>=<span class="str">"(max-width:600px) 100vw, 50vw"</span>
-  <span class="str">alt</span>=<span class="str">"Imagen responsive"</span>
-<span class="kw">/&gt;</span></pre>
-    </div>
-
-    <div class="card">
-      <span class="media-tag">&lt;picture&gt;</span>
-      <div class="card-title">Formatos por Navegador</div>
-      <p style="color:var(--text-dim);font-size:0.85rem">
-        El elemento <code>&lt;picture&gt;</code> sirve diferentes formatos dependiendo del soporte
-        del navegador: AVIF → WebP → JPEG (fallback).
-      </p>
-      <pre><span class="kw">&lt;picture&gt;</span>
-  <span class="kw">&lt;source</span> <span class="str">type</span>=<span class="str">"image/avif"</span> <span class="str">srcset</span>=<span class="str">"img.avif"</span><span class="kw">/&gt;</span>
-  <span class="kw">&lt;source</span> <span class="str">type</span>=<span class="str">"image/webp"</span> <span class="str">srcset</span>=<span class="str">"img.webp"</span><span class="kw">/&gt;</span>
-  <span class="kw">&lt;img</span> <span class="str">src</span>=<span class="str">"img.jpg"</span> <span class="str">alt</span>=<span class="str">"Foto"</span><span class="kw">/&gt;</span>
-<span class="kw">&lt;/picture&gt;</span></pre>
-    </div>
-
-    <div class="card">
-      <span class="media-tag">loading="lazy"</span>
-      <div class="card-title">Carga Diferida</div>
-      <p style="color:var(--text-dim);font-size:0.85rem">
-        La técnica de <strong>lazy loading</strong> retrasa la carga de recursos no visibles
-        inicialmente, mejorando el tiempo de carga inicial y el LCP.
-      </p>
-      <pre><span class="kw">&lt;img</span>
-  <span class="str">src</span>=<span class="str">"foto.jpg"</span>
-  <span class="str">loading</span>=<span class="str">"lazy"</span>
-  <span class="str">decoding</span>=<span class="str">"async"</span>
-<span class="kw">/&gt;</span></pre>
-    </div>
-
-    <div class="card">
-      <span class="media-tag">Main Thread</span>
-      <div class="card-title">Eficiencia de Renderizado</div>
-      <p style="color:var(--text-dim);font-size:0.85rem">
-        Evitar la sobrecarga del <em>Main Thread</em> mejora la interactividad inicial (INP).
-        Las estrategias incluyen diferir scripts y usar <code>will-change</code> selectivamente.
-      </p>
-      <pre><span class="kw">&lt;script</span> <span class="str">defer</span> <span class="str">src</span>=<span class="str">"app.js"</span><span class="kw">&gt;&lt;/script&gt;</span>
-
-<span class="cm">/* Promueve a capa GPU */</span>
-<span class="kw">.animated</span> {
-  <span class="kw">will-change</span>: <span class="str">transform</span>;
-}</pre>
-    </div>
-  </div>
-</section>
-
-<hr class="sep" />
 
 <!-- ════════════════════════════════════════════════════
      BLOQUE 3 — Calidad, Testing y Futuro
