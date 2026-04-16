@@ -270,6 +270,26 @@
   </div>
 </section>
 
+<section id="multimedia">
+  <div class="section-label">Bloque 2 · Recursos</div>
+  <h2 class="section-title">Gestión de Recursos Multimedia</h2>
+  <p class="section-desc">
+    Optimizar el uso de recursos es clave. Aquí una demo de <b>Art Direction</b>: la imagen cambia físicamente según el ancho de pantalla.
+  </p>
+
+  <div class="card reveal" style="margin-bottom: var(--gap); text-align: center;">
+    <picture>
+        <source srcset="/static/img/desktop.webp" media="(min-width: 1024px)">
+        <img src="/static/img/mobile.webp" alt="Demo Responsive" 
+             style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid var(--border);">
+    </picture>
+    <p style="margin-top:10px; font-size: 0.8rem; color: var(--accent);">
+       Imagen cambia con el disposittivo
+    </p>
+  </div>
+
+  <div class="media-grid reveal">
+
 <hr class="sep" />
 
 <!-- SECCIÓN 5: Gestión de Recursos Multimedia -->
@@ -499,7 +519,7 @@
       <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text-dim);letter-spacing:0.1em;margin-bottom:0.4rem">
         INTEGRACIÓN CON DISPOSITIVO REAL (Tailscale)
       </div>
-      <pre style="margin-top:0;font-size:0.7rem"><span class="cm"># Desde el móvil (reemplaza IP Tailscale)</span>
+      <pre style="margin-top:0;font-size:0.7rem"><span class="cm"># Desde el móvil</span>
 <span class="fn">curl</span> -X POST http://&lt;IP_TAILSCALE&gt;:5000/update-metrics \
   -H <span class="str">"Content-Type: application/json"</span> \
   -d <span class="str">'{"lcp":1800,"cls":0.05,"inp":120,"sent_at":'</span>$(date +%s.%N)<span class="str">'}'</span></pre>
@@ -603,14 +623,6 @@
     </div>
   </div>
 </section>
-
-<!-- ══════════════════════════════════
-     FOOTER
-══════════════════════════════════ -->
-<footer>
-  <p>Programación Web Responsive · <span>Demo Técnica Interactiva</span></p>
-  <p style="margin-top:0.35rem">CSS Grid · Flexbox · Media Queries · clamp() · Core Web Vitals</p>
-</footer>
 
 <script src="/static/script.js" defer></script>
 </body>

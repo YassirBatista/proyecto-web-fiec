@@ -1,8 +1,3 @@
-/* ═══════════════════════════════════════════════════════
-   style.css — Programación Web Responsive
-   Diseño: terminal-industrial con acento neón
-   Mobile-First | CSS Grid + Flexbox | unidades relativas
-═══════════════════════════════════════════════════════ */
 
 /* ── Fuentes ── */
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
@@ -27,7 +22,10 @@
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
-
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden; /* Corta cualquier contenido que intente salirse por la derecha */
+}
 body {
   background: var(--bg);
   color: var(--text);
@@ -211,7 +209,12 @@ section {
 }
 
 /* ── Grids ── */
-.grid-2 { display: grid; gap: var(--gap); grid-template-columns: 1fr; }
+.grid-2 {
+  min-width: 0;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
 .grid-3 { display: grid; gap: var(--gap); grid-template-columns: 1fr; }
 
 @media (min-width: 600px) {
@@ -758,14 +761,16 @@ pre {
   background: #040810;
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
-  border-radius: var(--r);
   padding: 1rem;
-  overflow-x: auto;
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  line-height: 1.7;
-  color: var(--text);
-  margin-top: 0.75rem;
+  
+  /* Esto es lo más importante: */
+  display: block;        /* Se comporta como un bloque sólido */
+  width: 100%;          /* No más que su padre */
+  overflow-x: auto;     /* Si el código es largo, sale barra de scroll interna */
+  
+  /* Cambia estas dos líneas: */
+  white-space: pre;      /* Mantiene el código en una línea (mejor para leer código) */
+  word-break: normal;    /* No rompe las palabras a mitad */
 }
 
 .kw  { color: #ff7eb3; }
